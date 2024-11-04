@@ -15,3 +15,14 @@ export function getArticles() {
       console.log(err, "error");
     });
 }
+
+export function getArticleById(id) {
+  return api
+    .get(`/api/articles/${id}`)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      console.log(err, "error");
+    });
+}
