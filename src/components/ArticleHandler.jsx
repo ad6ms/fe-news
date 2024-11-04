@@ -13,15 +13,19 @@ export function ArticleHandler() {
 
   return (
     <>
-      <ul>
-        {articles.map((article) => {
-          return (
-            <li key={article.article_id}>
-              <ArticleCard article={article} />
-            </li>
-          );
-        })}
-      </ul>
+      <div className="article-handler">
+        <ul>
+          {articles.map((article) => {
+            return (
+              <a href={`/api/articles/${article.article_id}`}>
+                <li key={article.article_id}>
+                  <ArticleCard article={article} />
+                </li>
+              </a>
+            );
+          })}
+        </ul>
+      </div>
     </>
   );
 }
