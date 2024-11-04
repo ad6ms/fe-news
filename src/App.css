@@ -8,3 +8,42 @@
 ul {
   list-style-type: none;
 }
+
+.header {
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+.article-handler {
+  width: 80%;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+.article-handler a {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  text-decoration: none;
+}
+
+.article-card {
+  display: flex;
+  max-width: 980px;
+  margin: auto;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.article-details {
+  padding: 10px;
+  width: 100%;
+}
+
+.article-images {
+  height: 300px;
+  width: 300px;
+}
