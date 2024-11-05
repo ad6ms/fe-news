@@ -26,3 +26,14 @@ export function getArticleById(id) {
       console.log(err, "error");
     });
 }
+
+export function getArticleComments(id) {
+  return api
+    .get(`/api/articles/${id}/comments`)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      console.log(err, "error");
+    });
+}
