@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getArticleById } from "../../api";
+import CommentHandler from "./CommentHandler";
 
 export default function View() {
   const [article, setArticle] = useState([]);
@@ -9,18 +10,19 @@ export default function View() {
   useEffect(() => {
     if (article_id !== "string") {
       setArticle("");
-      console.log(article);
     }
     getArticleById(article_id).then((response) => {
       setArticle(response.article);
     });
   }, [article_id]);
 
-  console.log(article);
   return (
-    <div>
-      <h2> {article.title} </h2>
-      <p> {article.body} </p>
-    </div>
+    <>
+      <div>
+        <h2> {article.title} </h2>
+        <p> {article.body} </p>
+      </div>
+      <CommentHandler article_id={article_id} />
+    </>
   );
 }
