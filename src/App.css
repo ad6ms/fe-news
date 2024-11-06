@@ -79,3 +79,14 @@ ul {
   margin-left: 10px;
   margin-right: 10px;
 }
+
+.add-comment-text {
+  float: left;
+  text-align: left;
+}
+
+.text-box {
+  width: 500px;
+  height: 200px;
+  margin-bottom: 100px;
+}

@@ -41,3 +41,11 @@ export function getArticleComments(id) {
 export function updateArticleVotes(id, incVotes) {
   return api.patch(`/api/articles/${id}`, incVotes);
 }
+
+export function postNewComment(userComment, id) {
+  return api
+    .post(`/api/articles/${id}/comments`, userComment)
+    .then((response) => {
+      return response;
+    });
+}

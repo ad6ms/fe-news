@@ -8,6 +8,7 @@ export function ArticleHandler() {
 
   useEffect(() => {
     getArticles().then((response) => {
+      console.log(response);
       setArticles(response.articles);
     });
   }, []);
