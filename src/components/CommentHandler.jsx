@@ -2,9 +2,7 @@ import { useEffect, useState } from "react";
 import { getArticleComments, postNewComment } from "../../api";
 import CommentCard from "./CommentCard";
 
-export default function CommentHandler(id) {
-  const { article_id } = id;
-
+export default function CommentHandler({ article_id }) {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
 
@@ -12,15 +10,19 @@ export default function CommentHandler(id) {
     getArticleComments(article_id).then((response) => {
       setComments(response.comments);
     });
-  }, [comments]);
+  }, []);
 
-  function handleSubmit(event) {
-    const userComment = {
-      body: event.target.value,
-      username: "grumpy19",
-    };
+  async function handleSubmit(event) {
     if (event.key === "Enter") {
-      postNewComment(userComment, article_id).then((response) => {});
+      event.preventDefault();
+
+      const userComment = {
+        body: event.target.value,
+        username: "grumpy19",
+      };
+
+      const postedComments = await postNewComment(userComment, article_id);
+      setComments((prevComments) => [postedComments, ...prevComments]);
       setNewComment("");
     }
   }
@@ -32,7 +34,7 @@ export default function CommentHandler(id) {
         {comments.map((comment) => {
           return (
             <div key={comment.comment_id}>
-              <CommentCard comment={comment} />
+              <CommentCard comment={comment} setComments={setComments} />
             </div>
           );
         })}{" "}
