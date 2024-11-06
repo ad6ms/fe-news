@@ -18,14 +18,9 @@ export function ArticleHandler() {
         <ul>
           {articles.map((article) => {
             return (
-              <Link
-                key={article.article_id}
-                to={`/articles/${article.article_id}`}
-              >
-                <li>
-                  <ArticleCard article={article} />
-                </li>
-              </Link>
+              <li key={article.article_id}>
+                <ArticleCard article={article} />
+              </li>
             );
           })}
         </ul>

@@ -3,6 +3,7 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  font: caption;
 }
 
 ul {
@@ -28,6 +29,7 @@ ul {
   top: 0;
   left: 0;
   text-decoration: none;
+  color: black !important;
 }
 
 .article-card {
@@ -44,6 +46,36 @@ ul {
 }
 
 .article-images {
-  height: 300px;
   width: 300px;
+}
+
+.comments-display-box {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  height: 40%;
+  width: 40%;
+}
+
+.comment {
+  font-size: small;
+}
+
+.comment h3 {
+  font-size: medium;
+}
+
+.comment button {
+  color: orange;
+  margin-left: 20px;
+}
+
+.up {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.down {
+  margin-left: 10px;
+  margin-right: 10px;
 }
