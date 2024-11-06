@@ -14,7 +14,7 @@ export default function CommentHandler(id) {
   }, []);
 
   return (
-    <div>
+    <div className="comments-display-box">
       <h2> Comments: </h2>
       <ul>
         {comments.map((comment) => {

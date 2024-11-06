@@ -37,3 +37,7 @@ export function getArticleComments(id) {
       console.log(err, "error");
     });
 }
+
+export function updateArticleVotes(id, incVotes) {
+  return api.patch(`/api/articles/${id}`, incVotes);
+}
