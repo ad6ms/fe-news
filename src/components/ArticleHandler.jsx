@@ -1,17 +1,15 @@
 import { getArticles } from "../../api";
 import { useEffect, useState } from "react";
 import ArticleCard from "./ArticleCard";
-import { Link } from "react-router-dom";
 
-export function ArticleHandler() {
+export function ArticleHandler({ sortBy, order }) {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    getArticles().then((response) => {
-      console.log(response);
+    getArticles(sortBy, order).then((response) => {
       setArticles(response.articles);
     });
-  }, []);
+  }, [sortBy, order]);
 
   return (
     <>
