@@ -2,14 +2,14 @@ import { getArticles } from "../../api";
 import { useEffect, useState } from "react";
 import ArticleCard from "./ArticleCard";
 
-export function ArticleHandler({ sortBy, order }) {
+export function ArticleHandler({ sortBy, order, topic }) {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    getArticles(sortBy, order).then((response) => {
+    getArticles(sortBy, order, topic).then((response) => {
       setArticles(response.articles);
     });
-  }, [sortBy, order]);
+  }, [sortBy, order, topic]);
 
   return (
     <>
