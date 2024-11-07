@@ -1,5 +1,5 @@
-import { ArticleHandler } from "./ArticleHandler";
+import QueryBar from "./QueryBar";
 
 export default function Browse() {
-  return <ArticleHandler />;
+  return <QueryBar />;
 }

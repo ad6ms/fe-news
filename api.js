@@ -5,9 +5,11 @@ const api = axios.create({
   timeout: 1000,
 });
 
-export function getArticles() {
+export function getArticles(sortBy, orderBy) {
+  const sort = sortBy ?? "sort_by=created_at";
+  const order = orderBy ?? "&order=DESC";
   return api
-    .get("/api/articles")
+    .get(`/api/articles?${sort}${order}`)
     .then((response) => {
       return response.data;
     })
@@ -52,4 +54,10 @@ export function postNewComment(userComment, id) {
 
 export function deleteComment(comment) {
   return api.delete(`/api/comments/${comment}`);
+}
+
+export function getTopics() {
+  return api.get("/api/topics").then((response) => {
+    return response.data;
+  });
 }

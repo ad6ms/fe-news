@@ -41,13 +41,12 @@ export default function CommentHandler({ article_id }) {
       </ul>
       <div className="add-comment-text">
         Add a comment:
-        <input
-          type="text"
+        <textarea
           className="text-box"
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
           onKeyDown={handleSubmit}
-        ></input>
+        ></textarea>
       </div>
     </div>
   );
