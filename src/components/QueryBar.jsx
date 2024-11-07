@@ -37,7 +37,8 @@ export default function QueryBar() {
             {topics.map((topic) => {
               return (
                 <option value={topic.slug} key={topic.slug}>
-                  {topic.slug}
+                  {topic.slug[0].toUpperCase() +
+                    topic.slug.slice(1, topic.slug.length)}
                 </option>
               );
             })}
@@ -52,8 +53,22 @@ export default function QueryBar() {
           <label htmlFor="order"> Order: </label>
           <select name="order" id="order" onChange={handleOrder}>
             <option></option>
-            <option value="&order=ASC"> Ascending </option>
-            <option value="&order=DESC"> Descending </option>
+            <option value="&order=ASC">
+              {" "}
+              {sortBy === "sort_by=created_at" ? (
+                <>Newest first</>
+              ) : (
+                <>Lowest to highest</>
+              )}{" "}
+            </option>
+            <option value="&order=DESC">
+              {" "}
+              {sortBy === "sort_by=created_at" ? (
+                <>Oldest first</>
+              ) : (
+                <>Highest to lowest</>
+              )}{" "}
+            </option>
           </select>
         </form>
       </div>

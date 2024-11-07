@@ -1,10 +1,15 @@
+import { Link } from "react-router-dom";
+import UserContext from "./UserContext";
+import { useContext } from "react";
+
 export default function Navbar() {
+  const { isLoggedIn } = useContext(UserContext);
   return (
     <div className="navbar">
-      <a href="/">Home</a>
-      <a href="/articles"> Articles</a>
-      <a href="/users"> Users</a>
-      <a href="/profile"> Profile</a>
+      <Link to="/">Home</Link>
+      <Link to="/articles"> Articles</Link>
+      <Link to="/users"> Users</Link>
+      <Link to="/profile"> {isLoggedIn ? <> Profile </> : <> Log in</>}</Link>
     </div>
   );
 }

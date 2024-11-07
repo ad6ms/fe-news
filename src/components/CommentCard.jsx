@@ -1,6 +1,9 @@
 import { deleteComment } from "../../api";
+import UserContext from "./UserContext";
+import { useContext } from "react";
 
 export default function CommentCard({ comment, setComments }) {
+  const { user, isLoggedIn } = useContext(UserContext);
   async function handleDelete() {
     if (comment.author === "grumpy19") {
       await deleteComment(comment.comment_id);
@@ -15,12 +18,14 @@ export default function CommentCard({ comment, setComments }) {
     <div className="comment">
       <h3> {comment.author} :</h3>
       <p> {comment.body} </p>
-      <button onClick={handleDelete}> Delete Comment </button>
+      {comment.author === user ? (
+        <button onClick={handleDelete}> Delete Comment </button>
+      ) : (
+        ""
+      )}
       <p> Likes: {comment.votes} </p>
       <button> updoot </button>
       <button> downdoot </button>
     </div>
   );
 }
-
-//eventually need to add conditional logic to determine whether the delete comment button will be displayed based on user logged in
