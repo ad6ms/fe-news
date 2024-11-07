@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArticleHandler } from "./ArticleHandler";
+import { getTopics } from "../../api";
 
 export default function QueryBar() {
   const [sortBy, setSortBy] = useState(null);
   const [order, setOrder] = useState("");
+  const [topics, setTopics] = useState([]);
+  const [currentTopic, setCurrentTopic] = useState("");
 
   function handleSortBy(e) {
     setSortBy(e.target.value);
@@ -13,16 +16,31 @@ export default function QueryBar() {
     setOrder(e.target.value);
   }
 
+  function handleTopicFilter(e) {
+    setCurrentTopic(e.target.value);
+  }
+
+  useEffect(() => {
+    getTopics().then((response) => {
+      setTopics(response.topics);
+    });
+  }, []);
+
   return (
     <>
       <div className="querybar">
         <form>
           {" "}
           <label htmlFor="filter"> Topic: </label>
-          <select name="topic" id="topic">
+          <select name="topic" id="topic" onChange={handleTopicFilter}>
             <option></option>
-            <option>1</option>
-            <option>2</option>
+            {topics.map((topic) => {
+              return (
+                <option value={topic.slug} key={topic.slug}>
+                  {topic.slug}
+                </option>
+              );
+            })}
           </select>
           <label htmlFor="sortby"> Sort by: </label>
           <select name="sortby" id="sortby" onChange={handleSortBy}>
@@ -39,7 +57,7 @@ export default function QueryBar() {
           </select>
         </form>
       </div>
-      <ArticleHandler sortBy={sortBy} order={order} />
+      <ArticleHandler sortBy={sortBy} order={order} topic={currentTopic} />
     </>
   );
 }

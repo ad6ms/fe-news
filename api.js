@@ -5,11 +5,12 @@ const api = axios.create({
   timeout: 1000,
 });
 
-export function getArticles(sortBy, orderBy) {
+export function getArticles(sortBy, orderBy, topicQuery) {
+  const topic = `&topic=${topicQuery}`;
   const sort = sortBy ?? "sort_by=created_at";
   const order = orderBy ?? "&order=DESC";
   return api
-    .get(`/api/articles?${sort}${order}`)
+    .get(`/api/articles?${topic}&${sort}${order}`)
     .then((response) => {
       return response.data;
     })
