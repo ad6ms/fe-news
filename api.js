@@ -2,7 +2,7 @@ import axios from "axios";
 
 const api = axios.create({
   baseURL: "https://nc-news-r6j6.onrender.com",
-  timeout: 1000,
+  timeout: 10000,
 });
 
 export function getArticles(sortBy, orderBy, topicQuery) {
@@ -59,6 +59,12 @@ export function deleteComment(comment) {
 
 export function getTopics() {
   return api.get("/api/topics").then((response) => {
+    return response.data;
+  });
+}
+
+export function getUserByUsername(userInput) {
+  return api.get(`/api/users/${userInput}`).then((response) => {
     return response.data;
   });
 }
