@@ -18,11 +18,38 @@ export default function ArticleCard(articles) {
 
   const [voteError, setVoteError] = useState("");
 
-  function handleClick(singleVote) {
+  const [upVoteState, setUpvoteState] = useState(false);
+
+  const [downVoteState, setDownvoteState] = useState(false);
+
+  function handleUpvote(singleVote) {
     setArticleVotes((votes) => {
+      setUpvoteState(!upVoteState);
+      if (downVoteState === true) {
+        setUpvoteState(false);
+        setDownvoteState(false);
+        return (votes += singleVote.inc_votes);
+      }
       return (votes += singleVote.inc_votes);
     });
-    setVoteError("");
+    updateArticleVotes(article_id, singleVote).catch(() => {
+      setArticleVotes((votes) => {
+        return (votes += singleVote.inc_votes);
+      });
+      setVoteError("Something went wrong");
+    });
+  }
+
+  function handleDownVote(singleVote) {
+    setArticleVotes((votes) => {
+      setDownvoteState(!downVoteState);
+      if (upVoteState === true) {
+        setUpvoteState(false);
+        setDownvoteState(false);
+        return (votes += singleVote.inc_votes);
+      }
+      return (votes += singleVote.inc_votes);
+    });
     updateArticleVotes(article_id, singleVote).catch(() => {
       setArticleVotes((votes) => {
         return (votes += singleVote.inc_votes);
@@ -37,21 +64,23 @@ export default function ArticleCard(articles) {
         <div className="article-details">
           <Link key={article_id} to={`/articles/${article_id}`}>
             <h2> {title} </h2>
-            <h3> {topic}</h3>
+            <h3> {topic[0].toUpperCase() + topic.slice(1, topic.length)}</h3>
             <p> {author}</p>
             <p> Comments: {comment_count}</p>
           </Link>
           <p>
             <button
               className="up"
-              onClick={() => handleClick({ inc_votes: 1 })}
+              disabled={upVoteState}
+              onClick={() => handleUpvote({ inc_votes: 1 })}
             >
               updoot
             </button>
             {articleVotes}
             <button
               className="down"
-              onClick={() => handleClick({ inc_votes: -1 })}
+              disabled={downVoteState}
+              onClick={() => handleDownVote({ inc_votes: -1 })}
             >
               downdoot
             </button>
