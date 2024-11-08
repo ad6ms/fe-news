@@ -25,13 +25,15 @@ export default function Account() {
           <div>
             <p>Please log in to view your account.</p>
             <form>
-              <label> Username: </label>
               <input
                 type="text"
                 placeholder="Enter Username"
                 id="username"
               ></input>
-              <button onClick={handleLogin}> Log in </button>
+              <button onClick={handleLogin} className="login-button">
+                {" "}
+                Log in{" "}
+              </button>
             </form>
           </div>
         )}

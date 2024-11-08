@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getArticleComments, postNewComment } from "../../api";
 import CommentCard from "./CommentCard";
+import UserContext from "./UserContext";
 
 export default function CommentHandler({ article_id }) {
+  const { user } = useContext(UserContext);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
 
@@ -18,7 +20,7 @@ export default function CommentHandler({ article_id }) {
 
       const userComment = {
         body: event.target.value,
-        username: "grumpy19",
+        username: user ?? "grumpy19",
       };
 
       const postedComments = await postNewComment(userComment, article_id);

@@ -66,7 +66,6 @@ ul {
 }
 
 .comment button {
-  color: orange;
   margin-left: 20px;
 }
 
@@ -92,5 +91,6 @@ ul {
   margin-bottom: 100px;
 }
 
-.querybar {
+.login-button {
+  margin-left: 5px;
 }

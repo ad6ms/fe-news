@@ -12,7 +12,7 @@ import Users from "./components/Users";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState("Guest");
+  const [user, setUser] = useState(null);
 
   return (
     <UserContext.Provider value={{ user, setUser, isLoggedIn, setIsLoggedIn }}>
